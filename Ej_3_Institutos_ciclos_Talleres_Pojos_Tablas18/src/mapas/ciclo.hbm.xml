@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="Pojos.Ciclos" table="ciclos">
+  <id name="codciclo"/>
+  <property name="nombre"/>
+     <set name="talleres" table="usos" inverse="false">
+            <key>
+                <column name="codciclo" not-null="true"/>
+          </key>
+          <many-to-many entity-name="pojos.Talleres">
+              <column name="codtaller"/>
+              </many-to-many>
+                </set>
+                
+                
+                  <set name="institutos" table="ciclos_institutos" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="codciclo" not-null="true" />
+            </key>
+            <many-to-many entity-name="pojos.Institutos">
+                <column name="codinstituto" not-null="true" />
+            </many-to-many>
+        </set>
+        
+                      <set name="usos" table="usos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codciclo" not-null="true" />
+            </key>
+            <one-to-many class="Pojos.Usos" />
+        </set>
+                
+              
+      
+      </class>
+</hibernate-mapping>

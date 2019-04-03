@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="Pojos.Hoteles" table="Hoteles">
+ 
+
+ <id name="idHotel"/>
+     <property name="nombre"/>
+     <property name="telefono"/>
+<set
+   name="reservas"  inverse="false">
+   <key>     
+   <column name="Hoteles" not-null="true" />
+    </key>
+   <one-to-many class="Pojos.Reservas"/>        
+</set>
+<set
+   name="habitaciones"  inverse="false">
+   <key>     
+   <column name="Hoteles" not-null="true" />
+    </key>
+   <one-to-many class="Pojos.Habitaciones"/>        
+</set>
+  
+ </class>  
+</hibernate-mapping>

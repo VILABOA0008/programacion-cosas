@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="Pojos.Talleres" table="talleres">
+      <id name="codtaller"/>
+      <property name="nombre"/>
+      <set name="ciclos" table="usos" inverse="true">
+            <key>
+                <column name="taller" not-null="true"/>
+          </key>
+          <many-to-many entity-name="pojos.Ciclos">
+              <column name="codciclo"/>
+              </many-to-many>
+        </set>
+           <set name="usos" table="usos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codtaller" not-null="true" />
+            </key>
+            <one-to-many class="Pojos.Usos" />
+        </set>
+  </class>
+</hibernate-mapping>

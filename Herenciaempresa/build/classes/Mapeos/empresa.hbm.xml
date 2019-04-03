@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="Pojos.Empresas" table="empresas">
+      <id name="cif"/>
+      <property name="nombre"/>
+        <property name="tlf" column="telefono"/>
+        <set
+            name="coches" table="coches" inverse="false">
+            <key>     
+           <column name="empresa" not-null="true" />
+            </key>
+        <one-to-many class="Pojos.Coches"/>        
+        </set>
+        
+
+       
+  </class>
+</hibernate-mapping>
